@@ -1,0 +1,65 @@
+'''
+To run the following test cases, execute the command:
+python3 -m doctest -v test_0_minoperations.txt
+
+Explanation of the operations:
+Character in the file: H
+Operations: "copy all" is represented by (bit 1) and "paste" by (bit 0),
+    Example: "copy all" followed by "paste" -> 11
+    Example: "paste only" -> 01
+
+>>> minOperations = __import__('0-minoperations').minOperations
+>>> minOperations(0)
+0
+>>> minOperations(-1)
+0
+>>> minOperations(1.4)
+0
+>>> minOperations('1')
+0
+
+# Only one 'H', no operations needed
+>>> minOperations(1)
+0
+
+# Initial 'H', then copy all and paste to get two 'H's
+>>> minOperations(2)
+2
+
+# Copy-paste to get 4 'H's or alternate paste steps
+# H-(11)->HH-(11)->HHHH
+# H-(11)->HH-(01)->HHH-(01)->HHHH
+>>> minOperations(4)
+4
+
+# Build five 'H's step by step with repeated pastes
+# H-(11)->HH-(01)->HHH-(01)->HHHH-(01)->HHHHH
+>>> minOperations(5)
+5
+
+# Seven 'H's through continuous pasting
+# H-(11)->HH-(01)->HHH-(01)->HHHH-(01)->HHHHH-(01)->HHHHHH-(01)->HHHHHHH
+>>> minOperations(7)
+7
+
+# Eleven 'H's with repeated pastes
+# H-(11)->HH-(01)->HHH-(01)->HHHH-(01)->HHHHH-(01)->HHHHHH-(01)->HHHHHHH-(01)->HHHHHHHH-(01)->HHHHHHHHH-(01)->HHHHHHHHHH-(01)->HHHHHHHHHHH
+>>> minOperations(11)
+11
+
+# Nine 'H's optimized with copy all at the right time
+# H-(11)->HH-(01)->HHH-(11)->HHHHHH-(01)->HHHHHHHHH
+>>> minOperations(9)
+6
+
+# Twelve 'H's with a combination of copying and pasting
+# H-(11)->HH-(11)->HHHHHH-(11)->HHHHHHHHHHHH
+>>> minOperations(12)
+7
+
+# Fifteen 'H's with both pasting and copying all at key points
+# H-(11)->HH-(01)->HHH-(11)->HHHHHH-(01)->HHHHHHHHH
+>>> minOperations(15)
+8
+'''
+
