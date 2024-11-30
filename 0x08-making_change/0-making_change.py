@@ -1,37 +1,35 @@
 #!/usr/bin/python3
-"""Module for calculating the minimum number of coins required to meet a target total.
+"""Module for calculating the fewest number of coins needed for a given total.
 """
 
 def makeChange(coins, total):
     """
-    Calculate the fewest number of coins needed to reach a specified total
-    using a given set of coin denominations.
+    Determines the fewest number of coins needed to meet the total amount.
 
     Args:
-        coins (list): List of coin denominations available.
-        total (int): Target amount to achieve.
+        coins (list): List of integers representing coin denominations.
+        total (int): The target amount to achieve.
 
     Returns:
-        int: Minimum number of coins required to meet the total, or -1 if it is not possible.
+        int: Minimum number of coins required to achieve the total.
+             Returns 0 if total is 0 or less.
+             Returns -1 if the total cannot be met.
     """
     if total <= 0:
         return 0
 
-    sorted_coins = sorted(coins, reverse=True)
-    rem = total
-    coins_count = 0
-    coin_idx = 0
-    n = len(coins)
+    # Sort coins in descending order for efficient computation
+    coins.sort(reverse=True)
+    
+    rem = total  # Remaining amount to be met
+    coins_count = 0  # Count of coins used
+    
+    for coin in coins:
+        if rem <= 0:
+            break
+        # Use as many of the current denomination as possible
+        count = rem // coin
+        coins_count += count
+        rem -= coin * count
 
-    while rem > 0:
-        if coin_idx >= n:
-            return -1
-
-        if rem >= sorted_coins[coin_idx]:
-            rem -= sorted_coins[coin_idx]
-            coins_count += 1
-        else:
-            coin_idx += 1
-
-    return coins_count
-
+    return coins_count if rem == 0 else -1
