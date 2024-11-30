@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""Module for calculating the fewest number of coins needed for a given total.
+"""Module for calculating the fewest number of coins needed for a total.
 """
+
 
 def makeChange(coins, total):
     """
@@ -20,10 +21,10 @@ def makeChange(coins, total):
 
     # Sort coins in descending order for efficient computation
     coins.sort(reverse=True)
-    
+
     rem = total  # Remaining amount to be met
     coins_count = 0  # Count of coins used
-    
+
     for coin in coins:
         if rem <= 0:
             break
